@@ -6,19 +6,20 @@ import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Method;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 public class CircleTest {
 
     @Test
     public void checkForSetRadius() {
         try {
-            Circle circle = new Circle();
-            circle.setRadius(0);
+//            Circle circle = new Circle();
+//            circle.setRadius(0);
+            Method method = Circle.class.getMethod("setRadius", double.class);
         }
-        catch(NoSuchMethodError e){
+        catch(NoSuchMethodException e){
             fail("No setRadius method in Circle class");
         }
 //        catch(NoClassDefFoundError e){
@@ -46,31 +47,22 @@ public class CircleTest {
 
     @Test
     public void testGettersSetters(){
-        try {
-            Circle circle = new Circle();
-            circle.setX(5);
-            circle.setY(10);
-            circle.setRadius(15);
+        Circle circle = new Circle();
+        circle.setX(5);
+        circle.setY(10);
+        //circle.setRadius(15);
 
-            assertEquals("X value is incorrect", 5, circle.getX(), 0);
-            assertEquals("Y value is incorrect", 10, circle.getY(), 0);
-            assertEquals("Side length is incorrect", 15, circle.getRadius(), 0);
-        }
-        catch (Exception e){
-            fail("Exception thrown when testing Circle getters and setters");
-        }
+        assertEquals("X value is incorrect", 5, circle.getX(), 0);
+        assertEquals("Y value is incorrect", 10, circle.getY(), 0);
+        assertEquals("Side length is incorrect", 15, circle.getRadius(), 0);
     }
 
     @Test
     public void testArea(){
-        try {
-            Circle circle = new Circle();
-            circle.setRadius(5);
-            assertEquals("Area is incorrect", Math.PI * 5 * 5, circle.getArea(), 0);
-        }
-        catch (Exception e){
-            fail("Exception thrown when testing Circle getters and setters");
-        }
+        Circle circle = new Circle();
+        //circle.setRadius(5);
+        assertEquals("Area is incorrect", Math.PI * 5 * 5, circle.getArea(), 0);
+        fail("Exception thrown when testing Circle getters and setters");
     }
 
     @Test

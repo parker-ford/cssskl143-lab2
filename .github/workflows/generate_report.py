@@ -36,7 +36,7 @@ def parse_junit_xml_effort(directory):
             root = tree.getroot()
             for testcase in root.findall(".//testcase"):
                 for failure in testcase.findall('failure'):
-                    if 'NoSuchMethodError' in failure.get('type') or 'NoSuchMethodError' in failure.text:
+                    if 'NoSuchMethodException' in failure.get('type') or 'NoSuchMethodException' in failure.text:
                         results += failure.text + "\n"
     return results
 
