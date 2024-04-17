@@ -49,7 +49,6 @@ def generate_report(results, output_file):
     with open(output_file, "w") as f:
         f.write("Test Results Summary\n")
         f.write("===================\n")
-        f.write(results)
         f.write(f"Total Tests: {results['total']}\n")
         f.write(f"Passed: {results['passed']}\n")
         f.write(f"Failed: {results['failed']}\n")
