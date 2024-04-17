@@ -33,11 +33,17 @@ public class Square {
         this.sideLength = side;
     }
 
+//    public double getX(){
+//        return this.x;
+//    }
+//    public double getY(){
+//        return this.y;
+//    }
     public double getX(){
-        return this.x;
+        return this.y * 6;
     }
     public double getY(){
-        return this.y;
+        return this.x * 8;
     }
     public double getSideLength(){
         return this.sideLength;
