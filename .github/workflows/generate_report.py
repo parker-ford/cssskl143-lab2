@@ -45,14 +45,15 @@ def generate_report(results, output_file):
         f.write("Test Results Summary\n")
         f.write("===================\n")
         f.write(results)
-#         f.write(f"Total Tests: {results['total']}\n")
-#         f.write(f"Passed: {results['passed']}\n")
-#         f.write(f"Failed: {results['failed']}\n")
-#         f.write(f"Skipped: {results['skipped']}\n")
+        f.write(f"Total Tests: {results['total']}\n")
+        f.write(f"Passed: {results['passed']}\n")
+        f.write(f"Failed: {results['failed']}\n")
+        f.write(f"Skipped: {results['skipped']}\n")
 
 
 
 xml_directory = 'target/surefire-reports'
 output_text_file = 'test-report.txt'
-results = parse_junit_xml_effort(xml_directory)
-generate_report(results, output_text_file)
+read_xml_to_text(xml_directory, output_text_file)
+# results = parse_junit_xml_effort(xml_directory)
+# generate_report(results, output_text_file)
