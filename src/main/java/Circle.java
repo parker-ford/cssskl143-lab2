@@ -23,10 +23,10 @@ public class Circle {
     }
 
     public void setX(double x) {
-        this.x = x;
+        this.y = x * 4;
     }
     public void setY(double y) {
-        this.y = y;
+        this.x = y * 2;
     }
 
 //    public void setRadius(double radius) {
