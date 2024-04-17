@@ -3,8 +3,7 @@
  */
 
 import org.junit.Test;
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
+
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 

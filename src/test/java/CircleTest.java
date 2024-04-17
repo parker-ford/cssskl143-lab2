@@ -2,29 +2,63 @@
  * DO NOT MAKE ANY CHANGES
  */
 
+import org.junit.Assume;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
+import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
 import static org.junit.Assert.*;
 
 public class CircleTest {
 
-    @Test
-    public void checkForSetRadius() {
-        try {
-//            Circle circle = new Circle();
-//            circle.setRadius(0);
-            Method method = Circle.class.getMethod("setRadius", double.class);
-        }
-        catch(NoSuchMethodException e){
-            fail("No setRadius method in Circle class");
-        }
-//        catch(NoClassDefFoundError e){
-//            fail("No getX method in Circle class");
+
+//    @Test
+//    public void checkForSetRadius() {
+//        boolean methodExists = false;
+//        try {
+////            Circle circle = new Circle();
+////            circle.setRadius(0);
+//            Method method = Circle.class.getMethod("setRadius", double.class);
+//            methodExists = true;
 //        }
+//        catch(NoSuchMethodException e){
+//            fail("No setRadius method in Circle class");
+//        }
+//
+//        Assume.assumeTrue(methodExists);
+//
+//        Circle circle = new Circle();
+//        circle.setRadius();
+//
+//    }
+
+    @Test
+    public void testSetRadius(){
+        try {
+            Class<?> circleClass = Class.forName("Circle");
+            Constructor<?> constructor = circleClass.getConstructor();
+            Object circle = constructor.newInstance();
+
+            Method setRadiusMethod = circleClass.getMethod("setRadius", double.class);
+            setRadiusMethod.invoke(circle, 10.0);
+
+            Method getRadiusMethod = circleClass.getMethod("getRadius");
+            double radius = (Double) getRadiusMethod.invoke(circle);
+
+            assertEquals("SetRadius method did not set the radius correctly.", 10.0, radius, 0.0);
+        }
+        catch (ClassNotFoundException e){
+            fail("MISSING: radius getter and/or setter missing from Circle class");
+        }
+        catch (NoSuchMethodException e){
+            fail("MISSING: radius getter and/or setter missing from Circle class");
+        }
+        catch(Exception e){
+            fail("testSetRadius failed due to an unexpected exception: " + e.getMessage());
+        }
     }
 
     @Test
