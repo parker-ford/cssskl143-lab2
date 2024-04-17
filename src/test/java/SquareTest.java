@@ -124,7 +124,7 @@ public class SquareTest {
             setMethod.invoke(square, 10.0);
 
             Method getMethod = squareClass.getMethod("getX");
-            double x = (Double) getMethod.invoke(circle);
+            double x = (Double) getMethod.invoke(square);
 
             assertEquals("-SQUARE CLASS: setX method did not set the radius correctly.", 10.0, x, 0.0);
         }
@@ -150,7 +150,7 @@ public class SquareTest {
             setMethod.invoke(square, 20.0);
 
             Method getMethod = squareClass.getMethod("getY");
-            double y = (Double) getMethod.invoke(circle);
+            double y = (Double) getMethod.invoke(square);
 
             assertEquals("-SQUARE CLASS: setY method did not set the radius correctly.", 20.0, y, 0.0);
         }
@@ -176,7 +176,7 @@ public class SquareTest {
             setMethod.invoke(square, 30.0);
 
             Method getMethod = squareClass.getMethod("getSideLength");
-            double sideLength = (Double) getMethod.invoke(circle);
+            double sideLength = (Double) getMethod.invoke(square);
 
             assertEquals("-SQUARE CLASS: setSideLength method did not set the side length correctly.", 30.0, sideLength, 0.0);
         }
