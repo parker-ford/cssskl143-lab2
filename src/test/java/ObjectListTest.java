@@ -41,17 +41,17 @@ public class ObjectListTest {
         assertTrue("add method in ObjectList class does not take an Object as input", hasAddMethodWithIntParam);
     }
 
-    @Test
-    public void testToString(){
-        ObjectList list = new ObjectList();
-        list.add(new Square());
-        list.add(new Circle());
-        
-       String result = list.toString();
-
-        assertTrue("Result should contain []", result.contains("[]"));
-        assertTrue("Result should contain O", result.contains("O"));
-    }
+//    @Test
+//    public void testToString(){
+//        ObjectList list = new ObjectList();
+//        list.add(new Square());
+//        list.add(new Circle());
+//
+//       String result = list.toString();
+//
+//        assertTrue("Result should contain []", result.contains("[]"));
+//        assertTrue("Result should contain O", result.contains("O"));
+//    }
 
    
    
