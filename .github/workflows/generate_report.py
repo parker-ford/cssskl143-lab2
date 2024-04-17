@@ -11,7 +11,7 @@ def read_xml_to_text(input_directory, output_file):
                         outfile.write(line)
 
 def parse_junit_xml(directory):
-    results = {"total": 0, "passed": 0, "failed": 0, "skipped": 0}
+    results = {"total": 0, "passed": 0, "failed": 0, "skipped": 0, "missing": [], "incorrect": []}
     for file in os.listdir(directory):
         if file.endswith(".xml"):
             path = os.path.join(directory, file)
@@ -21,6 +21,10 @@ def parse_junit_xml(directory):
                 results["total"] += 1
                 if testcase.find("failure") is not None:
                     results["failed"] += 1
+                    if failure.text.startswith("MISSING:"):
+                        results["missing"].append(failure.text)
+                    else:
+                        results["incorrect"].append(failure.text)
                 elif testcase.find("skipped") is not None:
                     results["skipped"] += 1
                 else:
@@ -49,6 +53,16 @@ def generate_report(results, output_file):
         f.write(f"Passed: {results['passed']}\n")
         f.write(f"Failed: {results['failed']}\n")
         f.write(f"Skipped: {results['skipped']}\n")
+        f.write("\n")
+        f.write("Missing Tests\n")
+        f.write("=============\n")
+        for missing in results["missing"]:
+            f.write(missing + "\n")
+        f.write("\n")
+        f.write("Incorrect Tests\n")
+        f.write("===============\n")
+        for incorrect in results["incorrect"]:
+            f.write(incorrect + "\n")
 
 
 
