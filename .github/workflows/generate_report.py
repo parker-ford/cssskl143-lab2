@@ -19,6 +19,7 @@ def parse_junit_xml(directory):
             root = tree.getroot()
             for testcase in root.findall(".//testcase"):
                 results["total"] += 1
+                failure = testcase.find("failure")
                 if testcase.find("failure") is not None:
                     results["failed"] += 1
                     if failure.text.startswith("MISSING:"):
