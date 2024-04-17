@@ -14,27 +14,6 @@ import static org.junit.Assert.*;
 
 public class CircleTest {
 
-
-//    @Test
-//    public void checkForSetRadius() {
-//        boolean methodExists = false;
-//        try {
-////            Circle circle = new Circle();
-////            circle.setRadius(0);
-//            Method method = Circle.class.getMethod("setRadius", double.class);
-//            methodExists = true;
-//        }
-//        catch(NoSuchMethodException e){
-//            fail("No setRadius method in Circle class");
-//        }
-//
-//        Assume.assumeTrue(methodExists);
-//
-//        Circle circle = new Circle();
-//        circle.setRadius();
-//
-//    }
-
     @Test
     public void testGetSetX(){
         try {
@@ -48,16 +27,16 @@ public class CircleTest {
             Method getRadiusMethod = circleClass.getMethod("getX");
             double x = (Double) getRadiusMethod.invoke(circle);
 
-            assertEquals("setX method did not set the radius correctly.", 10.0, x, 0.0);
+            assertEquals("-CIRCLE CLASS: setX method did not set the radius correctly.", 10.0, x, 0.0);
         }
         catch (ClassNotFoundException e){
-            fail("MISSING: x getter and/or setter missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: x getter and/or setter missing from Circle class");
         }
         catch (NoSuchMethodException e){
-            fail("MISSING: x getter and/or setter missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: x getter and/or setter missing from Circle class");
         }
         catch(Exception e){
-            fail("testGetSetX failed due to an unexpected exception: " + e.getMessage());
+            fail("-CIRCLE CLASS: testGetSetX failed due to an unexpected exception: " + e.getMessage());
         }
     }
 
@@ -74,16 +53,16 @@ public class CircleTest {
             Method getRadiusMethod = circleClass.getMethod("getY");
             double y = (Double) getRadiusMethod.invoke(circle);
 
-            assertEquals("setY method did not set the radius correctly.", 10.0, y, 0.0);
+            assertEquals("-CIRCLE CLASS: setY method did not set the radius correctly.", 10.0, y, 0.0);
         }
         catch (ClassNotFoundException e){
-            fail("MISSING: y getter and/or setter missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: y getter and/or setter missing from Circle class");
         }
         catch (NoSuchMethodException e){
-            fail("MISSING: y getter and/or setter missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: y getter and/or setter missing from Circle class");
         }
         catch(Exception e){
-            fail("testGetSetY failed due to an unexpected exception: " + e.getMessage());
+            fail("-CIRCLE CLASS: testGetSetY failed due to an unexpected exception: " + e.getMessage());
         }
     }
 
@@ -100,16 +79,16 @@ public class CircleTest {
             Method getRadiusMethod = circleClass.getMethod("getRadius");
             double radius = (Double) getRadiusMethod.invoke(circle);
 
-            assertEquals("setRadius method did not set the radius correctly.", 10.0, radius, 0.0);
+            assertEquals("-CIRCLE CLASS: setRadius method did not set the radius correctly.", 10.0, radius, 0.0);
         }
         catch (ClassNotFoundException e){
-            fail("MISSING: radius getter and/or setter missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: radius getter and/or setter missing from Circle class");
         }
         catch (NoSuchMethodException e){
-            fail("MISSING: radius getter and/or setter missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: radius getter and/or setter missing from Circle class");
         }
         catch(Exception e){
-            fail("testSetRadius failed due to an unexpected exception: " + e.getMessage());
+            fail("-CIRCLE CLASS: testSetRadius failed due to an unexpected exception: " + e.getMessage());
         }
     }
 
@@ -139,18 +118,18 @@ public class CircleTest {
             getRadiusMethod = circleClass.getMethod("getRadius");
             double radius = (Double) getRadiusMethod.invoke(circle);
 
-            assertEquals("X value is incorrect", 10.0, x, 0);
-            assertEquals("Y value is incorrect", 20.0, y, 0);
-            assertEquals("Radius value is incorrect", 30.0, radius, 0);
+            assertEquals("-CIRCLE CLASS: X value is incorrect", 10.0, x, 0);
+            assertEquals("-CIRCLE CLASS: Y value is incorrect", 20.0, y, 0);
+            assertEquals("-CIRCLE CLASS: Radius value is incorrect", 30.0, radius, 0);
         }
         catch (ClassNotFoundException e){
-            fail("MISSING: constructor missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: constructor missing from Circle class");
         }
         catch (NoSuchMethodException e){
-            fail("MISSING: constructor missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: constructor missing from Circle class");
         }
         catch(Exception e){
-            fail("testConstructors failed due to an unexpected exception: " + e.getMessage());
+            fail("-CIRCLE CLASS: testConstructors failed due to an unexpected exception: " + e.getMessage());
         }
 
         // Check for constructor with x and y
@@ -171,18 +150,18 @@ public class CircleTest {
             getRadiusMethod = circleClass.getMethod("getRadius");
             double radius = (Double) getRadiusMethod.invoke(circle);
 
-            assertEquals("X value is incorrect", 10.0, x, 0);
-            assertEquals("Y value is incorrect", 20.0, y, 0);
-            assertEquals("Radius value is incorrect", 30.0, radius, 0);
+            assertEquals("-CIRCLE CLASS: X value is incorrect", 10.0, x, 0);
+            assertEquals("-CIRCLE CLASS: Y value is incorrect", 20.0, y, 0);
+            assertEquals("-CIRCLE CLASS: Radius value is incorrect", 30.0, radius, 0);
         }
         catch (ClassNotFoundException e){
-            fail("MISSING: constructor missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: constructor missing from Circle class");
         }
         catch (NoSuchMethodException e){
-            fail("MISSING: constructor missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: constructor missing from Circle class");
         }
         catch(Exception e){
-            fail("testConstructors failed due to an unexpected exception: " + e.getMessage());
+            fail("-CIRCLE CLASS: testConstructors failed due to an unexpected exception: " + e.getMessage());
         }
 
         // Check for constructor with x, y, and radius
@@ -200,18 +179,18 @@ public class CircleTest {
             getRadiusMethod = circleClass.getMethod("getRadius");
             double radius = (Double) getRadiusMethod.invoke(circle);
 
-            assertEquals("X value is incorrect", 10.0, x, 0);
-            assertEquals("Y value is incorrect", 20.0, y, 0);
-            assertEquals("Radius value is incorrect", 30.0, radius, 0);
+            assertEquals("-CIRCLE CLASS: X value is incorrect", 10.0, x, 0);
+            assertEquals("-CIRCLE CLASS: Y value is incorrect", 20.0, y, 0);
+            assertEquals("-CIRCLE CLASS: Radius value is incorrect", 30.0, radius, 0);
         }
         catch (ClassNotFoundException e){
-            fail("MISSING: constructor missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: constructor missing from Circle class");
         }
         catch (NoSuchMethodException e){
-            fail("MISSING: constructor missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: constructor missing from Circle class");
         }
         catch(Exception e){
-            fail("testConstructors failed due to an unexpected exception: " + e.getMessage());
+            fail("-CIRCLE CLASS: testConstructors failed due to an unexpected exception: " + e.getMessage());
         }
     }
 
@@ -228,16 +207,16 @@ public class CircleTest {
             Method getAreaMethod = circleClass.getMethod("getArea");
             double area = (Double) getAreaMethod.invoke(circle);
 
-            assertEquals("Area is incorrect", Math.PI * 5 * 5, area, 0);
+            assertEquals("-CIRCLE CLASS: Area is incorrect", Math.PI * 5 * 5, area, 0);
         }
         catch (ClassNotFoundException e){
-            fail("MISSING: getArea method missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: getArea method missing from Circle class");
         }
         catch (NoSuchMethodException e){
-            fail("MISSING: getArea method missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: getArea method missing from Circle class");
         }
         catch(Exception e){
-            fail("testArea failed due to an unexpected exception: " + e.getMessage());
+            fail("-CIRCLE CLASS: testArea failed due to an unexpected exception: " + e.getMessage());
         }
     }
 
@@ -254,16 +233,16 @@ public class CircleTest {
             Method toStringMethod = circleClass.getMethod("toString");
             String output = (String) toStringMethod.invoke(circle);
 
-            assertEquals("toString is incorrect", "O", output);
+            assertEquals("-CIRCLE CLASS: toString is incorrect", "O", output);
         }
         catch (ClassNotFoundException e){
-            fail("MISSING: toString method missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: toString method missing from Circle class");
         }
         catch (NoSuchMethodException e){
-            fail("MISSING: toString method missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: toString method missing from Circle class");
         }
         catch(Exception e){
-            fail("testToString failed due to an unexpected exception: " + e.getMessage());
+            fail("-CIRCLE CLASS: testToString failed due to an unexpected exception: " + e.getMessage());
         }
     }
 
@@ -300,86 +279,14 @@ public class CircleTest {
             System.setOut(System.out);
         }
         catch (ClassNotFoundException e){
-            fail("MISSING: draw method missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: draw method missing from Circle class");
         }
         catch (NoSuchMethodException e){
-            fail("MISSING: draw method missing from Circle class");
+            fail("MISSING: -CIRCLE CLASS: draw method missing from Circle class");
         }
         catch(Exception e){
-            fail("testDraw failed due to an unexpected exception: " + e.getMessage());
+            fail("-CIRCLE CLASS: testDraw failed due to an unexpected exception: " + e.getMessage());
         }
     }
 
-    // @Test
-    // public void testConstructors() {
-    //     Circle circle = new Circle();
-    //     assertEquals("Circle constructor sets X incorrectly", 0, circle.getX(), 0);
-    //     assertEquals("Circle constructor sets Y incorrectly", 0, circle.getY(), 0);
-    //     assertEquals("Circle constructor sets sideLength incorrectly", 0, circle.getRadius(), 0);
-
-    //     circle = new Circle(10, 20);
-    //     assertEquals("Circle constructor sets X incorrectly", 10, circle.getX(), 0);
-    //     assertEquals("Circle constructor sets Y incorrectly", 20, circle.getY(), 0);
-    //     assertEquals("Circle constructor sets sideLength incorrectly", 0, circle.getRadius(), 0);
-
-    //     circle = new Circle(10, 20, 30);
-    //     assertEquals("Circle constructor sets X incorrectly", 10, circle.getX(), 0);
-    //     assertEquals("Circle constructor sets Y incorrectly", 20, circle.getY(), 0);
-    //     assertEquals("Circle constructor sets sideLength incorrectly", 30, circle.getRadius(), 0);
-    // }
-
-    // @Test
-    // public void testGettersSetters(){
-    //     Circle circle = new Circle();
-    //     circle.setX(5);
-    //     circle.setY(10);
-    //     //circle.setRadius(15);
-
-    //     assertEquals("X value is incorrect", 5, circle.getX(), 0);
-    //     assertEquals("Y value is incorrect", 10, circle.getY(), 0);
-    //     assertEquals("Side length is incorrect", 15, circle.getRadius(), 0);
-    // }
-
-    // @Test
-    // public void testArea(){
-    //     Circle circle = new Circle();
-    //     //circle.setRadius(5);
-    //     assertEquals("Area is incorrect", Math.PI * 5 * 5, circle.getArea(), 0);
-    //     fail("Exception thrown when testing Circle getters and setters");
-    // }
-
-    // @Test
-    // public void testToString(){
-    //     Circle circle = new Circle();
-    //     assertEquals("Circle toString is incorrect", "O", circle.toString());
-    // }
-
-    // @Test
-    // public void testDraw(){
-    //     Circle circle = new Circle();
-
-    //     // Redirect System.out to a buffer
-    //     ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-    //     System.setOut(new PrintStream(outContent));
-
-    //     circle.draw();
-
-    //     String expectedOutput = "O";
-
-    //     // Remove new line characters
-    //     String actualOutput = outContent.toString().replace("\n", "").replace("\r", "");
-
-    //     assertEquals(
-    //         String.format(
-    //             "Report method in Circle class is not functioning correctly. Expected: '%s', but was: '%s'",
-    //             expectedOutput,
-    //             actualOutput
-    //         ),
-    //         expectedOutput,
-    //         actualOutput
-    //     );
-
-    //     // Reset System.out
-    //     System.setOut(System.out);
-    // }
 }

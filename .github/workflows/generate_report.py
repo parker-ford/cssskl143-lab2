@@ -23,7 +23,7 @@ def parse_junit_xml(directory):
                 if testcase.find("failure") is not None:
                     results["failed"] += 1
                     if failure.get('message').startswith("MISSING:"):
-                        results["missing"].append(failure.get('message'))
+                        results["missing"].append(failure.get('message')[8:])
                     else:
                         results["incorrect"].append(failure.get('message'))
                 elif testcase.find("skipped") is not None:
