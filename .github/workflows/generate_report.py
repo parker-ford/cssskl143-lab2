@@ -68,6 +68,6 @@ def generate_report(results, output_file):
 
 xml_directory = 'target/surefire-reports'
 output_text_file = 'test-report.txt'
-read_xml_to_text(xml_directory, output_text_file)
-# results = parse_junit_xml_effort(xml_directory)
-# generate_report(results, output_text_file)
+# read_xml_to_text(xml_directory, output_text_file)
+results = parse_junit_xml(xml_directory)
+generate_report(results, output_text_file)
