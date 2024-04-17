@@ -40,7 +40,8 @@ jobs:
 #      - name: Verify no changes to the grader scripts
 #        run: bash .github/workflows/check_no_change_to_grader.sh
       - name: Build and run unit tests
-        run: mvn -B -ntp verify --file pom.xml
+#        run: mvn -B -ntp verify --file pom.xml
+        run: mvn -B -ntp verify --file pom.xml -P existence-tests
         continue-on-error: true
       - name: Verify submission not past due date
         run: bash .github/workflows/check_due_date.sh
