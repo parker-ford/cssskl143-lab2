@@ -8,8 +8,23 @@ import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.fail;
 
 public class CircleTest {
+
+    @Test
+    public void checkForGetX() {
+        try {
+            Circle circle = new Circle();
+            circle.getX();
+        }
+        catch(NoSuchMethodError e){
+            fail("No getX method in Circle class");
+        }
+//        catch(NoClassDefFoundError e){
+//            fail("No getX method in Circle class");
+//        }
+    }
 
     @Test
     public void testConstructors() {

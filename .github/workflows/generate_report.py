@@ -27,18 +27,32 @@ def parse_junit_xml(directory):
                     results["passed"] += 1
     return results
 
+def parse_junit_xml_effort(directory):
+    results = ""
+    for file in os.listdir(directory):
+        if file.endswith(".xml"):
+            path = os.path.join(directory, file)
+            tree = ET.parse(path)
+            root = tree.getroot()
+            for testcase in root.findall(".//testcase"):
+                for failure in testcase.findall('failure'):
+                    if 'NoSuchMethodError' in failure.get('type') or 'NoSuchMethodError' in failure.text:
+                        results += failure.text + "\n"
+    return results
+
 def generate_report(results, output_file):
     with open(output_file, "w") as f:
         f.write("Test Results Summary\n")
         f.write("===================\n")
-        f.write(f"Total Tests: {results['total']}\n")
-        f.write(f"Passed: {results['passed']}\n")
-        f.write(f"Failed: {results['failed']}\n")
-        f.write(f"Skipped: {results['skipped']}\n")
+        f.write(results)
+#         f.write(f"Total Tests: {results['total']}\n")
+#         f.write(f"Passed: {results['passed']}\n")
+#         f.write(f"Failed: {results['failed']}\n")
+#         f.write(f"Skipped: {results['skipped']}\n")
 
 
 
 xml_directory = 'target/surefire-reports'
 output_text_file = 'test-report.txt'
-results = parse_junit_xml(xml_directory)
+results = parse_junit_xml_effort(xml_directory)
 generate_report(results, output_text_file)

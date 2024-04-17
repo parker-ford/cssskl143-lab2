@@ -33,9 +33,9 @@ public class Circle {
         this.radius = radius;
     }
 
-    public double getX(){
-        return this.x;
-    }
+//    public double getX(){
+//        return this.x;
+//    }
     public double getY(){
         return this.y;
     }
