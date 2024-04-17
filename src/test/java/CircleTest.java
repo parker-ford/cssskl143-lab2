@@ -13,13 +13,13 @@ import static org.junit.Assert.fail;
 public class CircleTest {
 
     @Test
-    public void checkForGetX() {
+    public void checkForSetRadius() {
         try {
             Circle circle = new Circle();
-            circle.getX();
+            circle.setRadius(0);
         }
         catch(NoSuchMethodError e){
-            fail("No getX method in Circle class");
+            fail("No setRadius method in Circle class");
         }
 //        catch(NoClassDefFoundError e){
 //            fail("No getX method in Circle class");
@@ -46,21 +46,31 @@ public class CircleTest {
 
     @Test
     public void testGettersSetters(){
-        Circle circle = new Circle();
-        circle.setX(5);
-        circle.setY(10);
-        circle.setRadius(15);
+        try {
+            Circle circle = new Circle();
+            circle.setX(5);
+            circle.setY(10);
+            circle.setRadius(15);
 
-        assertEquals("X value is incorrect", 5, circle.getX(), 0);
-        assertEquals("Y value is incorrect", 10, circle.getY(), 0);
-        assertEquals("Side length is incorrect", 15, circle.getRadius(), 0);
+            assertEquals("X value is incorrect", 5, circle.getX(), 0);
+            assertEquals("Y value is incorrect", 10, circle.getY(), 0);
+            assertEquals("Side length is incorrect", 15, circle.getRadius(), 0);
+        }
+        catch (Exception e){
+            fail("Exception thrown when testing Circle getters and setters");
+        }
     }
 
     @Test
     public void testArea(){
-        Circle circle = new Circle();
-        circle.setRadius(5);
-        assertEquals("Area is incorrect", Math.PI * 5 * 5, circle.getArea(), 0);
+        try {
+            Circle circle = new Circle();
+            circle.setRadius(5);
+            assertEquals("Area is incorrect", Math.PI * 5 * 5, circle.getArea(), 0);
+        }
+        catch (Exception e){
+            fail("Exception thrown when testing Circle getters and setters");
+        }
     }
 
     @Test

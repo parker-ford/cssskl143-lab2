@@ -29,13 +29,13 @@ public class Circle {
         this.y = y;
     }
 
-    public void setRadius(double radius) {
-        this.radius = radius;
-    }
-
-//    public double getX(){
-//        return this.x;
+//    public void setRadius(double radius) {
+//        this.radius = radius;
 //    }
+
+    public double getX(){
+        return this.x;
+    }
     public double getY(){
         return this.y;
     }
