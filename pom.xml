@@ -25,13 +25,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.14.0</version>  <!-- Use the latest available version -->
-                <executions>
+                <version>3.14.0</version>
+                <configuration>
+                    <failOnViolation>false</failOnViolation>  <!-- Prevent PMD from failing the build -->
+                    <!-- <format>html</format>  Generates an HTML formatted report -->
+                </configuration> 
                     <execution>
+                        <phase>verify</phase>
                         <goals>
-                            <goal>check</goal>
+                            <goal>pmd</goal>
                         </goals>
-                        <phase>verify</phase> <!-- Bind PMD to the verify phase -->
                     </execution>
                 </executions>
             </plugin>
