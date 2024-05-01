@@ -50,8 +50,6 @@ jobs:
         with:
           name: checkstyle-reports
           path: ./checkstyle-report.xml
-      - name: Clean PMD
-        run: mvn clean pmd:pmd
       - name: Run PMD
         run: mvn -B pmd:pmd
       - name: Publish PMD Report

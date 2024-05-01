@@ -25,17 +25,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-pmd-plugin</artifactId>
-                <version>3.14.0</version>
+                <version>3.14.0</version>  <!-- Ensure you are using an up-to-date version -->
                 <configuration>
                     <failOnViolation>false</failOnViolation>
-                    <format>xml</format> 
-                </configuration> 
+                    <format>xml</format>  <!-- This configures PMD to output reports in XML format -->
+                </configuration>
                 <executions>
                     <execution>
-                        <phase>verify</phase>
                         <goals>
-                            <goal>pmd</goal>
+                            <goal>pmd</goal>  <!-- Generates the PMD report -->
                         </goals>
+                        <phase>verify</phase>
                     </execution>
                 </executions>
             </plugin>
