@@ -55,8 +55,12 @@ def check_requirements(parsed_files, requirements_file):
 
     for class_name, methods in parsed_files.items():
         if class_name in requirements:
+            print("Class found: ")
+            print(class_name)
             for method_name, line_count in methods.items():
                 if method_name in requirements[class_name]:
+                    print("method in requirements: ")
+                    print(method_name)
                     required_line_count = requirements[class_name][method_name]
                     if line_count < required_line_count:
                         print(f"Method {method_name} in class {class_name} has too little lines ({line_count}). Minimum allowed is {required_line_count}.")
