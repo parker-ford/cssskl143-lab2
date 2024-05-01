@@ -31,16 +31,14 @@ def parse_java_files(directory):
         with open(os.path.join(directory, java_file), 'r') as file:
             content = file.read()
 
-        # Regex pattern to match Java methods (simplified version)
         pattern = r'(public|private|protected|static)\s+\w+\s+(\w+)\s*\([^)]*\)\s*\{([^}]*)\}'
         matches = re.finditer(pattern, content, re.MULTILINE | re.DOTALL)
 
-        class_name = java_file[:-5]  # Remove .java extension
+        class_name = java_file[:-5]
         methods = {}
         for match in matches:
             method_name = match.group(2)
             method_body = match.group(3)
-            # Count the lines in the method body, adjusting for the method's opening and closing braces
             line_count = method_body.count('\n') + 1
             methods[method_name] = line_count
 
@@ -50,25 +48,19 @@ def parse_java_files(directory):
 
 
 def check_requirements(parsed_files, requirements_file):
+    results = []
     with open(requirements_file, 'r') as file:
         requirements = json.load(file)
 
     for class_name, methods in parsed_files.items():
         if class_name in requirements:
-            print("Class found: ")
-            print(class_name)
-            print("Requirements found: ")
-            print(requirements[class_name])
             for method_name, line_count in methods.items():
-                print(method_name)
-                print(requirements[class_name])
-                print(" ")
                 if method_name in requirements[class_name]:
-                    print("method in requirements: ")
-                    print(method_name)
                     required_line_count = requirements[class_name][method_name]
                     if line_count < required_line_count:
-                        print(f"Method {method_name} in class {class_name} has too little lines ({line_count}). Minimum allowed is {required_line_count}.")
+                        results.append("-" + class_name.upper() + " CLASS: " method_name + " does not display full effort")
+
+    return results
 
 def read_xml_to_text(input_directory, output_file):
     with open(output_file, 'w') as outfile:
@@ -130,11 +122,9 @@ def parse_pmd_xml(directory):
                     "line": violation.get('beginline')
                 }
                 results[filename].append(violation_obj)
-    print("results: ")
-    print(results)
     return results
 
-def generate_report(results, pmd_results, output_file):
+def generate_report(results, effort_results, pmd_results, output_file):
     with open(output_file, "w") as f:
 
         timestamp = datetime.datetime.now()
@@ -151,6 +141,9 @@ def generate_report(results, pmd_results, output_file):
         f.write("=============\n")
         for missing in results["missing"]:
             f.write(missing + "\n")
+        f.write("\n")
+        for method in effort_results:
+            f.write(method + "\n")
         f.write("\n")
         f.write("Incorrect Tests\n")
         f.write("===============\n")
@@ -173,7 +166,5 @@ output_text_file = 'test-report.txt'
 results = parse_junit_xml(xml_directory)
 pmd_results = parse_pmd_xml('target')
 methods = parse_java_files('src/main/java')
-print("methods: ")
-print(methods)
-check_requirements(methods, '.github/workflows/lineLengthRequirements.json')
-generate_report(results, pmd_results, output_text_file)
+effort_results = check_requirements(methods, '.github/workflows/lineLengthRequirements.json')
+generate_report(results, effort_results, pmd_results, output_text_file)
