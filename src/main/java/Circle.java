@@ -34,6 +34,10 @@ public class Circle {
 
         int test = 0;
 
+        for (;true;){
+            break;
+        }
+
         if (a < b) {
             // Do something
             System.out.println("a is less than b");
@@ -44,7 +48,7 @@ public class Circle {
             // Yet another thing
             if (b > 5) {
                 // Nested condition
-                System.out.println("b is greater than 5");
+                //System.out.println("b is greater than 5");
             }
         }
 
