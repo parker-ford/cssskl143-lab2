@@ -17,6 +17,7 @@ public class Square {
     }
 
     public Square(double x, double y, double side) {
+        int nothing = 1;
         this.x = x;
         this.y = y;
         this.sideLength = side;
