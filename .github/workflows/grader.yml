@@ -56,11 +56,11 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: PMD-Report
-          path: target/site/pmd.xml
+          path: target/pmd.xml
       - name: Print effective POM
         run: mvn help:effective-pom
       - name: List PMD report directory
-        run: ls -la target/site
+        run: ls -la target
       - name: Parse Test Results and Generate Report
         run: python .github/workflows/generate_report.py
         env:
