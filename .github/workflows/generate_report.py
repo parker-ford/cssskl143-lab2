@@ -58,7 +58,7 @@ def check_requirements(parsed_files, requirements_file):
                 if method_name in requirements[class_name]:
                     required_line_count = requirements[class_name][method_name]
                     if line_count < required_line_count:
-                        results.append("-" + class_name.upper() + " CLASS: " + method_name + " does not display full effort")
+                        results.append(" -" + class_name.upper() + " CLASS: " + method_name + " does not display full effort")
 
     return results
 
