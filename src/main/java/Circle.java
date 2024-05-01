@@ -58,7 +58,7 @@ public class Circle {
         }
     }
 
-    public void complilcateMethod() {
+    public void complilcatedMethod() {
         int a = 5;
         int b = 10;
         int c = 15;
