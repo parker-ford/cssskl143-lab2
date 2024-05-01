@@ -23,6 +23,7 @@ public class Circle {
     }
 
     public void setX(double x) {
+        double test = 5;
         this.y = x * 4;
     }
     public void setY(double y) {
