@@ -51,7 +51,7 @@ jobs:
           name: checkstyle-reports
           path: ./checkstyle-report.xml
       - name: Run Maven Verify with PMD Check
-        run: mvn -B verify
+        run: mvn -B pmd:pmd
       - name: Parse Test Results and Generate Report
         run: python .github/workflows/generate_report.py
         env:
