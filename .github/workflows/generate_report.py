@@ -90,6 +90,7 @@ def generate_report(results, pmd_results, output_file):
             f.write(f"File: {file}\n")
             for violation in violations:
                 f.write(f"Line {violation['line']}: {violation['text']}\n")
+            f.write("\n")
 
 
 xml_directory = 'target/surefire-reports'

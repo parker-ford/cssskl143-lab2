@@ -30,6 +30,28 @@ public class Circle {
         this.x = y * 2;
     }
 
+    public void testMethod(int a, int b) {
+
+        if (a < b) {
+            // Do something
+            System.out.println("a is less than b");
+        } else if (a == b) {
+            // Do something else
+            System.out.println("a is equal to b");
+        } else {
+            // Yet another thing
+            if (b > 5) {
+                // Nested condition
+                System.out.println("b is greater than 5");
+            }
+        }
+
+        for (int i = 0; i < 100; i++) {
+            String example = new String("Repeated String");
+            System.out.println(example);
+        }
+    }
+
 //    public void setRadius(double radius) {
 //        this.radius = radius;
 //    }
