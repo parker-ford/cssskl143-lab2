@@ -9,7 +9,7 @@ def parse_java_file(file_path):
 
     # Regex pattern to match Java methods (simplified version)
     # This pattern needs to be refined based on specific coding styles and edge cases
-    pattern = r'\b(public|protected|private|static|\s)+ [\w<>\[\]]+\s+(\w+) *\([^\)]*\) *(\{(?:(?1)|[^{}])*\})'
+    pattern = r'(public|private|protected|static)\s+\w+\s+(\w+)\s*\([^)]*\)\s*\{'
     matches = re.finditer(pattern, content, re.MULTILINE | re.DOTALL)
 
     methods = {}
