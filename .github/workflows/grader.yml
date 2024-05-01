@@ -51,7 +51,7 @@ jobs:
           name: checkstyle-reports
           path: ./checkstyle-report.xml
       - name: Run PMD
-        run: mvn -B pmd:pmd
+        run: mvn pmd:pmd
       - name: Publish PMD Report
         uses: actions/upload-artifact@v2
         with:
