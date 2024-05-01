@@ -45,7 +45,25 @@ def parse_junit_xml_effort(directory):
                         results += failure.text + "\n"
     return results
 
-def generate_report(results, output_file):
+def parse_pmd_xml(directory):
+    results = {}
+    for file in os.listdir(directory):
+        if file.endswith(".xml"):
+            path = os.path.join(directory, file)
+            tree = ET.parse(path)
+            root = tree.getroot()
+            for file in root.findall(".//file"):
+                filename = file.get('name')
+                results[filename] = []
+                for violation in file.findall('violation'):
+                    violation_obj = {
+                        "text": violation.text,
+                        "line": violation.get('beginline')
+                    }
+                    results[filename].append(violation_obj)
+    return results
+
+def generate_report(results, pmd_results, output_file):
     with open(output_file, "w") as f:
         f.write("Test Results Summary\n")
         f.write("===================\n")
@@ -63,11 +81,18 @@ def generate_report(results, output_file):
         f.write("===============\n")
         for incorrect in results["incorrect"]:
             f.write(incorrect + "\n")
-
+        f.write("\n")
+        f.write("PMD Results\n")
+        f.write("===========\n")
+        for file, violations in pmd_results.items():
+            f.write(f"File: {file}\n")
+            for violation in violations:
+                f.write(f"Line {violation['line']}: {violation['text']}\n")
 
 
 xml_directory = 'target/surefire-reports'
 output_text_file = 'test-report.txt'
 # read_xml_to_text(xml_directory, output_text_file)
 results = parse_junit_xml(xml_directory)
-generate_report(results, output_text_file)
+pmd_results = parse_pmd_xml('target/pmd')
+generate_report(results, pmd_results, output_text_file)
