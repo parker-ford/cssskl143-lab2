@@ -47,26 +47,21 @@ def parse_junit_xml_effort(directory):
 
 def parse_pmd_xml(directory):
     results = {}
-    for file in os.listdir(directory):
-        print("file: ")
-        print(file)
-        if file.endswith(".xml"):
-            path = os.path.join(directory, file)
-            tree = ET.parse(path)
-            root = tree.getroot()
-            for file in root.findall(".//file"):
-                print("file: ")
-                print(file.get('name'))
-                filename = file.get('name')
-                results[filename] = []
-                for violation in file.findall('violation'):
-                    violation_obj = {
-                        "text": violation.text,
-                        "line": violation.get('beginline')
-                    }
-                    results[filename].append(violation_obj)
-    print("results: ")
-    print(results)
+    pmd_file = os.path.join(directory, "pmd.xml")
+    if os.path.isfile(pmd_file):
+        print("PMD file found")
+        tree = ET.parse(pmd_file)
+        root = tree.getroot()
+        for file in root.findall(".//file"):
+            print(file.get('name'))
+            filename = file.get('name')
+            results[filename] = []
+            for violation in file.findall('violation'):
+                violation_obj = {
+                    "text": violation.text,
+                    "line": violation.get('beginline')
+                }
+                results[filename].append(violation_obj)
     return results
 
 def generate_report(results, pmd_results, output_file):
