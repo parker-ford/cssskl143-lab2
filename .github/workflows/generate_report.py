@@ -57,7 +57,11 @@ def check_requirements(parsed_files, requirements_file):
         if class_name in requirements:
             print("Class found: ")
             print(class_name)
+            print("Requirements found: ")
+            print(requirements[class_name])
             for method_name, line_count in methods.items():
+                print("Method found: ")
+                print(method_name)
                 if method_name in requirements[class_name]:
                     print("method in requirements: ")
                     print(method_name)
