@@ -50,8 +50,13 @@ jobs:
         with:
           name: checkstyle-reports
           path: ./checkstyle-report.xml
-      - name: Run Maven Verify with PMD Check
+      - name: Run PMD
         run: mvn -B pmd:pmd
+      - name: Publish PMD Report
+        uses: actions/upload-artifact@v2
+        with:
+          name: PMD-Report
+          path: target/site/pmd.html
       - name: Parse Test Results and Generate Report
         run: python .github/workflows/generate_report.py
         env:
