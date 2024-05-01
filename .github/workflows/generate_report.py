@@ -49,6 +49,8 @@ def parse_pmd_xml(directory):
     results = {}
     for file in os.listdir(directory):
         if file.endswith(".xml"):
+            print("file: ")
+            print(file)
             path = os.path.join(directory, file)
             tree = ET.parse(path)
             root = tree.getroot()
