@@ -53,6 +53,8 @@ def parse_pmd_xml(directory):
             tree = ET.parse(path)
             root = tree.getroot()
             for file in root.findall(".//file"):
+                print("file: ")
+                print(file.get('name'))
                 filename = file.get('name')
                 results[filename] = []
                 for violation in file.findall('violation'):
@@ -61,6 +63,8 @@ def parse_pmd_xml(directory):
                         "line": violation.get('beginline')
                     }
                     results[filename].append(violation_obj)
+    print("results: ")
+    print(results)
     return results
 
 def generate_report(results, pmd_results, output_file):
