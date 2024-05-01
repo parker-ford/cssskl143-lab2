@@ -2,6 +2,7 @@ import xml.etree.ElementTree as ET
 import os
 import re
 import datetime
+import json
 
 
 # def parse_java_file(file_path):
@@ -46,6 +47,19 @@ def parse_java_files(directory):
         classes[class_name] = methods
 
     return classes
+
+
+def check_requirements(parsed_files, requirements_file):
+    with open(requirements_file, 'r') as file:
+        requirements = json.load(file)
+
+    for class_name, methods in parsed_files.items():
+        if class_name in requirements:
+            for method_name, line_count in methods.items():
+                if method_name in requirements[class_name]:
+                    required_line_count = requirements[class_name][method_name]
+                    if line_count < required_line_count:
+                        print(f"Method {method_name} in class {class_name} has too little lines ({line_count}). Minimum allowed is {required_line_count}.")
 
 def read_xml_to_text(input_directory, output_file):
     with open(output_file, 'w') as outfile:
@@ -152,4 +166,5 @@ pmd_results = parse_pmd_xml('target')
 methods = parse_java_files('src/main/java')
 print("methods: ")
 print(methods)
+check_requirements(methods, './lineLengthRequirements.json')
 generate_report(results, pmd_results, output_text_file)
