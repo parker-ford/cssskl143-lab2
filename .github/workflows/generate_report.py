@@ -8,8 +8,7 @@ def parse_java_file(file_path):
         content = file.read()
 
     # Regex pattern to match Java methods (simplified version)
-    # This pattern needs to be refined based on specific coding styles and edge cases
-    pattern = r'(public|private|protected|static)\s+\w+\s+(\w+)\s*\([^)]*\)\s*\{'
+    pattern = r'(public|private|protected|static)\s+\w+\s+(\w+)\s*\([^)]*\)\s*\{([^}]*)\}'
     matches = re.finditer(pattern, content, re.MULTILINE | re.DOTALL)
 
     methods = {}
@@ -17,7 +16,7 @@ def parse_java_file(file_path):
         method_name = match.group(2)
         method_body = match.group(3)
         # Count the lines in the method body, adjusting for the method's opening and closing braces
-        line_count = method_body.count('\n') - 1
+        line_count = method_body.count('\n') + 1
         methods[method_name] = line_count
 
     return methods
