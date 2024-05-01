@@ -1,25 +1,51 @@
 import xml.etree.ElementTree as ET
 import os
 import re
+import datetime
 
 
-def parse_java_file(file_path):
-    with open(file_path, 'r') as file:
-        content = file.read()
+# def parse_java_file(file_path):
+#     with open(file_path, 'r') as file:
+#         content = file.read()
 
-    # Regex pattern to match Java methods (simplified version)
-    pattern = r'(public|private|protected|static)\s+\w+\s+(\w+)\s*\([^)]*\)\s*\{([^}]*)\}'
-    matches = re.finditer(pattern, content, re.MULTILINE | re.DOTALL)
+#     # Regex pattern to match Java methods (simplified version)
+#     pattern = r'(public|private|protected|static)\s+\w+\s+(\w+)\s*\([^)]*\)\s*\{([^}]*)\}'
+#     matches = re.finditer(pattern, content, re.MULTILINE | re.DOTALL)
 
-    methods = {}
-    for match in matches:
-        method_name = match.group(2)
-        method_body = match.group(3)
-        # Count the lines in the method body, adjusting for the method's opening and closing braces
-        line_count = method_body.count('\n') + 1
-        methods[method_name] = line_count
+#     methods = {}
+#     for match in matches:
+#         method_name = match.group(2)
+#         method_body = match.group(3)
+#         # Count the lines in the method body, adjusting for the method's opening and closing braces
+#         line_count = method_body.count('\n') + 1
+#         methods[method_name] = line_count
 
-    return methods
+#     return methods
+
+def parse_java_files(directory):
+    java_files = [f for f in os.listdir(directory) if f.endswith('.java')]
+    classes = {}
+
+    for java_file in java_files:
+        with open(os.path.join(directory, java_file), 'r') as file:
+            content = file.read()
+
+        # Regex pattern to match Java methods (simplified version)
+        pattern = r'(public|private|protected|static)\s+\w+\s+(\w+)\s*\([^)]*\)\s*\{([^}]*)\}'
+        matches = re.finditer(pattern, content, re.MULTILINE | re.DOTALL)
+
+        class_name = java_file[:-5]  # Remove .java extension
+        methods = {}
+        for match in matches:
+            method_name = match.group(2)
+            method_body = match.group(3)
+            # Count the lines in the method body, adjusting for the method's opening and closing braces
+            line_count = method_body.count('\n') + 1
+            methods[method_name] = line_count
+
+        classes[class_name] = methods
+
+    return classes
 
 def read_xml_to_text(input_directory, output_file):
     with open(output_file, 'w') as outfile:
@@ -121,10 +147,9 @@ def generate_report(results, pmd_results, output_file):
 
 xml_directory = 'target/surefire-reports'
 output_text_file = 'test-report.txt'
-# read_xml_to_text(xml_directory, output_text_file)
 results = parse_junit_xml(xml_directory)
 pmd_results = parse_pmd_xml('target')
-methods = parse_java_file('src/main/java/Circle.java')
+methods = parse_java_files('src/main/java')
 print("methods: ")
 print(methods)
 generate_report(results, pmd_results, output_text_file)
