@@ -48,9 +48,9 @@ def parse_junit_xml_effort(directory):
 def parse_pmd_xml(directory):
     results = {}
     for file in os.listdir(directory):
+        print("file: ")
+        print(file)
         if file.endswith(".xml"):
-            print("file: ")
-            print(file)
             path = os.path.join(directory, file)
             tree = ET.parse(path)
             root = tree.getroot()
@@ -100,5 +100,5 @@ xml_directory = 'target/surefire-reports'
 output_text_file = 'test-report.txt'
 # read_xml_to_text(xml_directory, output_text_file)
 results = parse_junit_xml(xml_directory)
-pmd_results = parse_pmd_xml('target/pmd')
+pmd_results = parse_pmd_xml('target')
 generate_report(results, pmd_results, output_text_file)
