@@ -65,14 +65,24 @@ def parse_junit_xml_effort(directory):
 #     return results
 
 def parse_pmd_xml(directory):
+    results = {}
     pmd_file = os.path.join(directory, "pmd.xml")
     if os.path.isfile(pmd_file):
         tree = ET.parse(pmd_file)
         root = tree.getroot()
-        for child in root:
-            print(child.tag, child.attrib)
-
-    return {}
+        namespace = {'ns': 'http://pmd.sourceforge.net/report/2.0.0'}
+        for file in root.findall("ns:file", namespace):
+            filename = file.get('name')
+            results[filename] = []
+            for violation in file.findall('ns:violation', namespace):
+                violation_obj = {
+                    "text": violation.text.strip(),
+                    "line": violation.get('beginline')
+                }
+                results[filename].append(violation_obj)
+    print("results: ")
+    print(results)
+    return results
 
 def generate_report(results, pmd_results, output_file):
     with open(output_file, "w") as f:
