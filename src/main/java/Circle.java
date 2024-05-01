@@ -58,6 +58,21 @@ public class Circle {
         }
     }
 
+    public void complilcateMethod() {
+        int a = 5;
+        int b = 10;
+        int c = 15;
+        int d = 20;
+
+        if (a < b) {
+            if (b < c) {
+                if (c < d) {
+                    System.out.println("a is less than b, b is less than c, and c is less than d");
+                }
+            }
+        }
+    }
+
 //    public void setRadius(double radius) {
 //        this.radius = radius;
 //    }

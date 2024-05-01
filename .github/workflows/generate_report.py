@@ -1,5 +1,26 @@
 import xml.etree.ElementTree as ET
 import os
+import re
+
+
+def parse_java_file(file_path):
+    with open(file_path, 'r') as file:
+        content = file.read()
+
+    # Regex pattern to match Java methods (simplified version)
+    # This pattern needs to be refined based on specific coding styles and edge cases
+    pattern = r'\b(public|protected|private|static|\s)+ [\w<>\[\]]+\s+(\w+) *\([^\)]*\) *(\{(?:(?1)|[^{}])*\})'
+    matches = re.finditer(pattern, content, re.MULTILINE | re.DOTALL)
+
+    methods = {}
+    for match in matches:
+        method_name = match.group(2)
+        method_body = match.group(3)
+        # Count the lines in the method body, adjusting for the method's opening and closing braces
+        line_count = method_body.count('\n') - 1
+        methods[method_name] = line_count
+
+    return methods
 
 def read_xml_to_text(input_directory, output_file):
     with open(output_file, 'w') as outfile:
@@ -67,6 +88,10 @@ def parse_pmd_xml(directory):
 
 def generate_report(results, pmd_results, output_file):
     with open(output_file, "w") as f:
+
+        timestamp = datetime.datetime.now()
+        f.write(f"Report generated on {timestamp}\n\n")
+
         f.write("Test Results Summary\n")
         f.write("===================\n")
         f.write(f"Total Tests: {results['total']}\n")
@@ -74,7 +99,7 @@ def generate_report(results, pmd_results, output_file):
         f.write(f"Failed: {results['failed']}\n")
         f.write(f"Skipped: {results['skipped']}\n")
         f.write("\n")
-        f.write("Missing Tests\n")
+        f.write("Effort Not Displayed\n")
         f.write("=============\n")
         for missing in results["missing"]:
             f.write(missing + "\n")
@@ -84,7 +109,7 @@ def generate_report(results, pmd_results, output_file):
         for incorrect in results["incorrect"]:
             f.write(incorrect + "\n")
         f.write("\n")
-        f.write("PMD Results\n")
+        f.write("CODE FEEDBACK\n")
         f.write("===========\n")
         for file, violations in pmd_results.items():
             f.write(f"File: {file}\n")
@@ -93,9 +118,14 @@ def generate_report(results, pmd_results, output_file):
             f.write("\n")
 
 
+
+
 xml_directory = 'target/surefire-reports'
 output_text_file = 'test-report.txt'
 # read_xml_to_text(xml_directory, output_text_file)
 results = parse_junit_xml(xml_directory)
 pmd_results = parse_pmd_xml('target')
+methods = parse_java_file('src/main/java/Circle.java')
+print("methods: ")
+print(methods)
 generate_report(results, pmd_results, output_text_file)

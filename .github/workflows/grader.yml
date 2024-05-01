@@ -45,18 +45,8 @@ jobs:
         continue-on-error: true
       - name: Verify submission not past due date
         run: bash .github/workflows/check_due_date.sh
-      - name: Archive Checkstyle reports
-        uses: actions/upload-artifact@v2
-        with:
-          name: checkstyle-reports
-          path: ./checkstyle-report.xml
       - name: Run PMD
         run: mvn pmd:pmd
-      - name: Publish PMD Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: PMD-Report
-          path: target/pmd.xml
       - name: Print effective POM
         run: mvn help:effective-pom
       - name: List PMD report directory
