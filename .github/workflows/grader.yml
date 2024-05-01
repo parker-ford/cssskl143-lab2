@@ -56,7 +56,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: PMD-Report
-          path: target/site/pmd.html
+          path: target/site/pmd.xml
       - name: Parse Test Results and Generate Report
         run: python .github/workflows/generate_report.py
         env:
