@@ -57,6 +57,8 @@ jobs:
         with:
           name: PMD-Report
           path: target/site/pmd.xml
+      - name: Print effective POM
+        run: mvn help:effective-pom
       - name: List PMD report directory
         run: ls -la target/site
       - name: Parse Test Results and Generate Report
