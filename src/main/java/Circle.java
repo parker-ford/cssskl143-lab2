@@ -32,6 +32,8 @@ public class Circle {
 
     public void testMethod(int a, int b) {
 
+        int test = 0;
+
         if (a < b) {
             // Do something
             System.out.println("a is less than b");
