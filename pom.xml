@@ -30,6 +30,7 @@
                     <failOnViolation>false</failOnViolation>  <!-- Prevent PMD from failing the build -->
                     <!-- <format>html</format>  Generates an HTML formatted report -->
                 </configuration> 
+                <executions>
                     <execution>
                         <phase>verify</phase>
                         <goals>
